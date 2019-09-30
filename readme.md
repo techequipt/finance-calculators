@@ -8,13 +8,13 @@ A range of financial calculators.
 ## Install
 
 ```
-$ npm install @techequipt/finance-calculators
+$ npm install --save git+ssh://git@gitlab.com:techequipt/finance-calculators.git#master
 ```
 
 ## Usage
 
 ```js
-import { repayments } from "@techequipt/finance-calculators";
+import { repayments } from "finance-calculators";
 
 repayments({
   rate: 0.05,
