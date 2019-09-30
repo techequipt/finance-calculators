@@ -1,7 +1,4 @@
-# @techequipt/finance-calculators
-
-[![npm (scoped)](https://img.shields.io/npm/v/@techequipt/finance-calculators.svg)](https://www.npmjs.com/package/@techequipt/finance-calculators)
-[![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@techequipt/finance-calculators.svg)](https://www.npmjs.com/package/@techequipt/finance-calculators)
+# TechEquipt Finance Calculators
 
 A range of financial calculators.
 
