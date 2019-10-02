@@ -8,6 +8,7 @@ const monthsInYear: number = 12;
 const quartersInYear: number = 4;
 
 export type LoanFrequency = "weekly" | "monthly" | "quarterly" | "annually";
+export type LoanType = "principal_interest" | "interest_only";
 
 interface ILoanData {
   rate: number;
@@ -15,6 +16,7 @@ interface ILoanData {
   amount: number;
   years: number;
   frequency: LoanFrequency;
+  type: LoanType;
 }
 
 function getFrequencyInt(frequency: string): number {
@@ -29,23 +31,33 @@ function getFrequencyInt(frequency: string): number {
     : 0;
 }
 
-export function repayments(data: ILoanData): string {
+export function repayments(data: ILoanData): number {
   const {
     rate = 0,
     deposit = 0,
     amount = 0,
     years = 0,
-    frequency = "weekly"
+    frequency = "weekly",
+    type = "principal_interest"
   } = data;
 
   const frequencyInt: number = getFrequencyInt(frequency);
   const frequencyRate: number = rate / frequencyInt;
   const n: number = years * frequencyInt;
-  const df: number =
-    (Math.pow(1 + frequencyRate, n) - 1) /
-    (frequencyRate * Math.pow(1 + frequencyRate, n));
+  let payment: number = 0;
 
-  const payment: number = (amount - deposit) / df;
+  if (type === "principal_interest") {
+    // depreciation factor
+    const df: number =
+      (Math.pow(1 + frequencyRate, n) - 1) /
+      (frequencyRate * Math.pow(1 + frequencyRate, n));
 
-  return `$${parseFloat(payment.toFixed(2)) || "0"}`;
+    // principal + interest payment
+    payment = (amount - deposit) / df;
+  } else if (type === "interest_only") {
+    // interest only payment
+    payment = ((amount - deposit) * rate) / frequencyInt;
+  }
+
+  return parseFloat(payment.toFixed(2)) || 0;
 }
