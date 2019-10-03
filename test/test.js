@@ -4,7 +4,7 @@ var index = require("../dist/index.js");
 describe("repayments function test", () => {
   it("should return 471.78", () => {
     var result = index.repayments({
-      rate: 0.05,
+      rate: 5,
       deposit: 5000,
       amount: 30000,
       years: 5,
@@ -15,7 +15,7 @@ describe("repayments function test", () => {
   });
   it("should return 104.17", () => {
     var result = index.repayments({
-      rate: 0.05,
+      rate: 5,
       deposit: 5000,
       amount: 30000,
       years: 5,

@@ -41,8 +41,9 @@ export function repayments(data: ILoanData): number {
     type = "principal_interest"
   } = data;
 
+  const percentage: number = rate / 100;
   const frequencyInt: number = getFrequencyInt(frequency);
-  const frequencyRate: number = rate / frequencyInt;
+  const frequencyRate: number = percentage / frequencyInt;
   const n: number = years * frequencyInt;
   let payment: number = 0;
 
@@ -56,7 +57,7 @@ export function repayments(data: ILoanData): number {
     payment = (amount - deposit) / df;
   } else if (type === "interest_only") {
     // interest only payment
-    payment = ((amount - deposit) * rate) / frequencyInt;
+    payment = ((amount - deposit) * percentage) / frequencyInt;
   }
 
   return parseFloat(payment.toFixed(2)) || 0;

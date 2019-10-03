@@ -20,8 +20,9 @@ function getFrequencyInt(frequency) {
 }
 function repayments(data) {
     var _a = data.rate, rate = _a === void 0 ? 0 : _a, _b = data.deposit, deposit = _b === void 0 ? 0 : _b, _c = data.amount, amount = _c === void 0 ? 0 : _c, _d = data.years, years = _d === void 0 ? 0 : _d, _e = data.frequency, frequency = _e === void 0 ? "weekly" : _e, _f = data.type, type = _f === void 0 ? "principal_interest" : _f;
+    var percentage = rate / 100;
     var frequencyInt = getFrequencyInt(frequency);
-    var frequencyRate = rate / frequencyInt;
+    var frequencyRate = percentage / frequencyInt;
     var n = years * frequencyInt;
     var payment = 0;
     if (type === "principal_interest") {
@@ -33,7 +34,7 @@ function repayments(data) {
     }
     else if (type === "interest_only") {
         // interest only payment
-        payment = ((amount - deposit) * rate) / frequencyInt;
+        payment = ((amount - deposit) * percentage) / frequencyInt;
     }
     return parseFloat(payment.toFixed(2)) || 0;
 }
