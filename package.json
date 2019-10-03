@@ -1,7 +1,7 @@
 {
   "name": "finance-calculators",
   "finance-calculators": "git+ssh://git@gitlab.com:techequipt/finance-calculators.git#master",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A range of financial calculators.",
   "license": "MIT",
   "repository": "techequipt/finance-calculators",
