@@ -24,4 +24,15 @@ describe("repayments function test", () => {
     });
     expect(result).to.equal(104.17);
   });
+  it("should return 76.92", () => {
+    var result = index.repayments({
+      rate: 0,
+      deposit: 0,
+      amount: 20000,
+      years: 5,
+      frequency: "weekly",
+      type: "principal_interest"
+    });
+    expect(result).to.equal(76.92);
+  });
 });

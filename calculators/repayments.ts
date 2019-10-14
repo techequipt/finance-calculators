@@ -49,9 +49,17 @@ export function repayments(data: ILoanData): number {
 
   if (type === "principal_interest") {
     // depreciation factor
-    const df: number =
-      (Math.pow(1 + frequencyRate, n) - 1) /
-      (frequencyRate * Math.pow(1 + frequencyRate, n));
+    let df: number;
+
+    if (frequencyRate > 0) {
+      // rate is greater than 0
+      df =
+        (Math.pow(1 + frequencyRate, n) - 1) /
+        (frequencyRate * Math.pow(1 + frequencyRate, n));
+    } else {
+      // no rate
+      df = n;
+    }
 
     // principal + interest payment
     payment = (amount - deposit) / df;

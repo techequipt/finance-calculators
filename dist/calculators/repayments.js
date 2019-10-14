@@ -27,8 +27,17 @@ function repayments(data) {
     var payment = 0;
     if (type === "principal_interest") {
         // depreciation factor
-        var df = (Math.pow(1 + frequencyRate, n) - 1) /
-            (frequencyRate * Math.pow(1 + frequencyRate, n));
+        var df = void 0;
+        if (frequencyRate > 0) {
+            // rate is greater than 0
+            df =
+                (Math.pow(1 + frequencyRate, n) - 1) /
+                    (frequencyRate * Math.pow(1 + frequencyRate, n));
+        }
+        else {
+            // no rate
+            df = n;
+        }
         // principal + interest payment
         payment = (amount - deposit) / df;
     }
